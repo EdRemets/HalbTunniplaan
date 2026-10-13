@@ -701,3 +701,90 @@ a:focus-visible,
         animation: none;
     }
 }
+
+/* ============================================================
+   ANTI-PATTERN EXPANSION — intentional bad UX, NOT best practice.
+   Inspired by three r/badUIbattles posts referenced in the footer.
+   ============================================================ */
+[hidden] { display: none !important; }
+
+/* #1: a garish, contradictory settings dashboard. */
+.anti-dashboard {
+    margin: 19px 3px 28px;
+    border: 10px groove #f00;
+    outline: 6px dashed #00f;
+    background: repeating-linear-gradient(160deg,#ff85d0 0 32px,#00ffb6 32px 64px,#fff000 64px 96px);
+    box-shadow: 14px 12px 0 #000, -6px -5px 0 #ff00ce;
+    padding: 12px 15px;
+    transform: rotate(-.5deg);
+}
+.anti-dashboard-heading { text-align:center; background:#0b0879; color:#fff; padding:8px; text-shadow:2px 2px #c90074; }
+.anti-dashboard-heading strong { display:block; font:900 clamp(22px,3.2vw,42px) Impact,sans-serif; letter-spacing:2px; }
+.anti-dashboard-heading span {font:italic bold 16px 'Comic Sans MS',cursive; color:#ff0;}
+.anti-dashboard-grid {display:flex; gap:14px; flex-wrap:wrap; align-items:stretch; margin-top:12px;}
+.anti-dashboard-grid label { flex:1 1 180px; font:bold 18px Impact,sans-serif; background:#fff; border:4px dashed #0f00ff; text-align:center; padding:9px; }
+.anti-dashboard-grid label:nth-child(2) {background:#f70;color:#00f; transform:rotate(1.5deg);}
+.anti-dashboard-grid label small {display:block;font:12px Arial,sans-serif;color:#111;margin-top:4px;}
+.anti-dashboard-grid input {display:block; width:100%; margin:12px 0; accent-color:#ff00b7;}
+.anti-dashboard-grid button {cursor:pointer; flex:1 1 160px; border:6px outset #d0d0d0; padding:8px; background:#ffff00; color:red; font:900 19px Impact,sans-serif; text-shadow:1px 1px #fff;}
+.anti-dashboard-grid button:hover {color:#fff;background:#f0f;transform:rotate(-3deg) scale(1.03);}
+.anti-fake-loader {display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin:10px 0 0; padding:5px;background:#fff; font:bold 13px 'Courier New',monospace;}
+.anti-fake-loader strong {font:900 21px Impact,sans-serif;color:red;}
+.anti-loading-track {height:19px;min-width:100px;flex:1 1 90px; background:#eee;border:3px inset gray;overflow:hidden;}
+.anti-loading-track > span {width:99%;height:100%;display:block;background:repeating-linear-gradient(45deg,#11ff00 0 10px,#8b00ff 10px 20px);animation:anti-loader 5s ease-in-out infinite alternate;}
+@keyframes anti-loader {from {width:99%}to {width:19%}}
+
+/* Make the existing layout react to the deliberately misleading sliders. */
+.schedule-window {
+    --anti-fuzz: .4px;
+    --anti-cant: -.2deg;
+    filter: blur(var(--anti-fuzz)) saturate(1.5);
+    transform:rotate(var(--anti-cant));
+    transition:filter .6s, transform .5s;
+}
+.masthead {animation:anti-drift 9s ease-in-out infinite alternate;}
+@keyframes anti-drift {from{translate:0 0}to{translate:5px -3px}}
+.lesson .subject:hover {transform:skew(8deg, -5deg) scale(1.08);}
+.anti-flee-link {position:relative; transform:translate(var(--anti-flee-x, 0px),var(--anti-flee-y, 0px)) rotate(var(--anti-flee-r, 0deg));transition:transform .13s ease-out,opacity .12s;z-index:5;}
+.anti-flee-link.anti-disappearing {opacity:0;pointer-events:none;}
+
+/* #3: an absurd verification overlay where the secret is already visible. */
+.anti-security {position:fixed;inset:0;z-index:9000;display:grid;place-items:center;padding:15px;overflow:auto;
+    background:repeating-linear-gradient(45deg,rgba(255,0,170,.88) 0 21px,rgba(0,0,255,.88) 21px 42px);}
+.anti-security-window {max-width:540px;width:100%;max-height:calc(100vh - 30px);overflow-y:auto;border:9px ridge #ffff00;box-shadow:16px 16px 0 #000,0 0 0 7px #0ff;
+    background:#c0c0c0;padding:13px 17px 19px;text-align:center;color:#000;}
+.anti-window-title {display:flex;justify-content:space-between;gap:10px;color:#fff;background:#000080;text-align:left;padding:8px;font:bold 14px Arial,sans-serif;}
+.anti-padlock {font-size:52px;margin:10px;letter-spacing:8px;}
+.anti-security h2 {margin:8px 0 14px;font:900 clamp(25px,6vw,40px) Impact,sans-serif;color:#f00;text-shadow:2px 2px #ff0;}
+.anti-security p {font-size:16px;line-height:1.4;}
+.anti-exposed-code {border:6px dashed #f00;background:#ffff00;padding:13px 7px;}
+.anti-exposed-code strong {display:block;font:900 58px 'Courier New',monospace;letter-spacing:6px;color:#00f;user-select:all;}
+.anti-help {font-size:12px!important;background:#fff;padding:6px;}
+#anti-security-form {display:flex;flex-direction:column;align-items:center;gap:9px;}
+#anti-security-form label {font:bold 16px Arial,sans-serif;}
+#anti-pin {width:190px;max-width:100%;padding:11px;text-align:center;font:bold 32px 'Courier New',monospace;letter-spacing:9px;border:5px inset #fff;background:#fb9fda;}
+#anti-verify {cursor:pointer;padding:12px 16px;background:#00ff00;border:6px outset #fff;font:900 17px Impact,sans-serif;color:#000;}
+#anti-verify:hover {background:#ff0;}
+#anti-verification-message {font:bold 13px Arial,sans-serif;color:#cf0035;margin:0;}
+
+/* #1: an irrelevant ad that deliberately steals screen space. */
+.anti-ad {position:fixed;z-index:2000;right:16px;bottom:18px;width:min(300px,calc(100vw - 32px));padding:9px 12px 13px;
+    border:7px ridge #fff000;outline:4px dashed #ff00b7;box-shadow:9px 9px 0 #000;background:#00ffff;color:#c00000;
+    font:bold 18px 'Comic Sans MS',cursive;text-align:center;animation:anti-ad-bob 5s ease-in-out infinite alternate;}
+.anti-ad-header {background:#f0f;color:#000;padding:5px;font:bold 15px Impact,sans-serif;}
+.anti-ad-header span {display:block;font:11px Arial,sans-serif;}
+.anti-ad p {margin:10px 0;}
+.anti-ad-small {font-size:12px!important;}
+.anti-ad button {cursor:pointer;background:#ff0;border:5px outset #bbb;font:bold 20px Impact,sans-serif;padding:8px 17px;position:relative;transition:transform .1s;}
+@keyframes anti-ad-bob {from{translate:0 0}to{translate:0 -9px}}
+.anti-toast {position:fixed;left:50%;top:24px;translate:-50% 0;max-width:min(420px,90vw);text-align:center;z-index:9500;
+    color:#fff;background:#f00;border:6px ridge #ff0;padding:14px;font:900 19px Impact,sans-serif;box-shadow:8px 8px #000;}
+#anti-particles {position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden;}
+.anti-fragment {position:fixed;pointer-events:none;border:1px solid #f0f;animation:anti-fragment-burst .62s ease-out forwards;}
+@keyframes anti-fragment-burst {to{translate:var(--dx) var(--dy);rotate:var(--dr);scale:0;opacity:0;}}
+.anti-sources {margin:25px auto 4px;text-align:center;border:4px double #000;background:#fff;padding:12px;font:13px Arial,sans-serif;}
+.anti-sources strong {color:red;display:block;font:900 18px Impact,sans-serif;}
+.anti-sources a {color:#00f;text-decoration:underline wavy red;}
+.anti-sources small {display:block;margin-top:8px;}
+@media(max-width:700px){.anti-ad{right:7px;bottom:7px;width:min(205px,65vw);padding:5px;font-size:14px;}.anti-ad button{font-size:15px;}.anti-dashboard-grid label{flex-basis:100%;}.anti-dashboard{outline-width:3px;border-width:6px;}.anti-security-window{padding:8px;}.anti-exposed-code strong{font-size:44px;}}
+@media(prefers-reduced-motion:reduce){.masthead,.anti-ad,.anti-loading-track > span{animation:none!important;}.anti-fragment{animation-duration:.01ms;}.anti-flee-link{transition:none;}}

@@ -9,6 +9,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
+    <!-- Anti-pattern #3: completely pointless "security" that displays its own PIN. -->
+    <div class="anti-security" id="anti-security" role="dialog" aria-modal="true" aria-labelledby="anti-security-title" hidden>
+        <div class="anti-security-window">
+            <div class="anti-window-title">⛨ WORLD CLASS SECURITY 2026™ <span>[ □ ] [ X ]</span></div>
+            <div class="anti-padlock" aria-hidden="true">🔒🔓🔒</div>
+            <h2 id="anti-security-title">TUNNIPLAAN ON KLASSIFITSEERITUD!!!</h2>
+            <p>Enne tunniplaani vaatamist tõesta, et sa tead <em>täiesti salajast</em> PIN-koodi.</p>
+            <p class="anti-exposed-code">SINU SALAJANE TURVAKOOD ON: <strong id="anti-visible-code">0000</strong></p>
+            <p class="anti-help">Turvalisuse huvides näitame koodi kõigile. (See on nali, päris sisselogimist ei toimu.)</p>
+            <form id="anti-security-form" novalidate>
+                <label for="anti-pin">Sisesta ülal nähtav kood uuesti:</label>
+                <input id="anti-pin" name="pin" autocomplete="off" inputmode="numeric" maxlength="4" placeholder="????" aria-describedby="anti-verification-message">
+                <button id="anti-verify" type="submit">KINNITA MINU IDENTITEET!!!</button>
+                <p id="anti-verification-message" role="status">Kood peab olema neljakohaline. Kõike peab tegema käsitsi.</p>
+            </form>
+        </div>
+    </div>
+    <div id="anti-toast" class="anti-toast" role="status" aria-live="polite" hidden></div>
+    <div id="anti-particles" aria-hidden="true"></div>
     <header class="masthead">
         <div class="school-label">TECHNO TLN KESKLINN<br><small>Pärnu mnt 57, Tallinn</small></div>
         <div class="heading-stack">
@@ -23,11 +42,32 @@
         <span>+++ TÄHELEPANU +++ TUNNID ALGAVAD KELL 8:30 +++ ÄRA UNUSTA SÜÜA +++ TÄHELEPANU +++ TUNNID ALGAVAD KELL 8:30 +++</span>
     </div>
 
+    <!-- Anti-pattern #1: controls which make the visual mess worse. -->
+    <section class="anti-dashboard" aria-label="Täiesti ebavajalik juhtpaneel">
+        <div class="anti-dashboard-heading">
+            <strong>!!! ULTRA-HALDUSPANEEL 3000 !!!</strong>
+            <span>Seaded, mida keegi ei küsinud · KÕIK ON TÄHTIS!!!</span>
+        </div>
+        <div class="anti-dashboard-grid">
+            <label>TEE TEKST SELGEMAKS ✨
+                <input id="anti-readability" type="range" min="0" max="100" value="25">
+                <small>Mida rohkem selgust, seda udusem tekst.</small>
+            </label>
+            <label>STABIILSUS / RAHU 🌀
+                <input id="anti-stability" type="range" min="0" max="100" value="35">
+                <small>See kontroll mõjutab ainult närve.</small>
+            </label>
+            <button id="anti-fix-layout" type="button">🔧 PARANDA KUJUNDUS</button>
+            <button id="anti-remove-annoyances" type="button">🚨 EEMALDA HÄIRIVAD ASJAD</button>
+        </div>
+        <div class="anti-fake-loader">Lehte optimeeritakse igaveseks... <strong id="anti-progress">99%</strong><span class="anti-loading-track"><span></span></span></div>
+    </section>
+
     <main>
         <div class="week-bar">
             <div class="week-label">NÄDAL <strong>04/10/2026 – 10/10/2026</strong></div>
             <div class="teacher-label">Klassijuhataja: <strong>Sikorski Jevgeni</strong></div>
-            <a class="jump-link" href="#timetable">TUNNIPLAAN ON SIIN ↓</a>
+            <a class="jump-link anti-flee-link" id="anti-flee-link" href="#timetable" title="Püüa mind kinni!">TUNNIPLAAN ON SIIN ↓</a>
         </div>
 
         <div class="schedule-window" id="timetable">
@@ -185,10 +225,26 @@
         </aside>
     </main>
 
+    <!-- Anti-pattern #1: needless pop-up, deliberately troublesome close button. -->
+    <aside class="anti-ad" id="anti-ad" aria-label="Pealetükkiv reklaam">
+        <div class="anti-ad-header">⚠️ TÄHTIS REKLAAM ⚠️ <span>100% vajalik</span></div>
+        <p>ÕNNITLUSED!!! 🎉 Sa oled <strong>1 000 000.</strong> tunniplaani vaataja!</p>
+        <p class="anti-ad-small">Auhind: üks (1) uus häiriv aken.</p>
+        <button id="anti-close-ad" type="button">[ X ] SULGE</button>
+    </aside>
+
     <footer>
         <span class="browser-badge">BEST VIEWED IN<br><b>Internet Explorer 6.0</b></span>
         <p>Kehtivus: 04/10/2026–10/10/2026<br><span>© K-TA-25A · kõik pikslid kasutuses</span></p>
         <a href="#top" class="top-link">ÜLES ↑</a>
     </footer>
+    <section class="anti-sources" aria-label="Anti-patternide inspiratsioon">
+        <strong>ANTI-PATTERN INSPIRATSIOON:</strong>
+        <a href="https://www.reddit.com/r/badUIbattles/comments/1wmk4w8/my_game_full_of_obnoxious_and_ridiculous_ui_is/" target="_blank" rel="noopener noreferrer">1. Obnoxious UI game</a> ·
+        <a href="https://www.reddit.com/r/badUIbattles/comments/1wd3q2k/literally_unclickable/" target="_blank" rel="noopener noreferrer">2. Literally unclickable</a> ·
+        <a href="https://www.reddit.com/r/badUIbattles/comments/1wcdign/world_class_security/" target="_blank" rel="noopener noreferrer">3. World class security</a>
+        <small>Kõik siin on teadlikult halb disain. Ära kasuta neid mustreid päris rakenduses.</small>
+    </section>
+    <script src="chaos.js" defer></script>
 </body>
 </html>
